@@ -24,8 +24,10 @@ imgargs vmlinuz quiet splash nomodeset
 boot || goto custom_exit
 
 :option_two
-kernel https://boot.netboot.xyz/memdisk raw iso
+initrd /boot/initrd-6.15.6-1-default
+kernel /boot/vmlinuz-6.15.6-1-default 
 initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-NET-x86_64-Current.iso
+imgargs vmlinuz quiet splash nomodeset
 boot || goto custom_exit
 
 :option_three

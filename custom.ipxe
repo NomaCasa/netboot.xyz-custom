@@ -11,7 +11,14 @@ item option_one ${space} Loading a kernel and initrd
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
-item option_four ${space} This is option four
+item option_four ${space} Alpine?
+item --gap Custom urls
+item option five Custom
+item option eight Custom
+item option seven Custom
+item option six MicroOS ISO
+item option seven XFCE Tumbleweed
+
 choose custom_choice || goto custom_exit
 echo ${cls}
 goto ${custom_choice}
@@ -34,10 +41,63 @@ boot || goto custom_exit
 echo Chains into another menu...
 chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom1.ipxe || goto custom
 
+:option_four
+imgfree
+kernel http://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/netboot/vmlinuz-virt BOOTIF=${netX/mac} ip=dhcp apkovl=https://raw.githubusercontent.com/macmpi/alpine-linux-headless-bootstrap/main/headless.apkovl.tar.gz alpine_repo=http://dl-cdn.alpinelinux.org/alpine/v3.20/main modules=loop,squashfs modloop=http://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/netboot/modloop-virt quiet nomodeset
+initrd http://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/netboot/initramfs-virt
+echo Alpine
+echo MD5sums:
+md5sum vmlinuz-virt initramfs-virt
+boot || goto custom_exit
+
+:option_five
+menu Custom URLs
+item --gap This is the first sub menu
+item option_one ${space} Install PopOS Cosmic (Intel) 24.04
+item option_two ${space} Install XCP-NG 8.2.1
+item option_three ${space} Install Rocky-10-Workstation-Lite
+item --gap This is a second sub menu
+item option_four ${space} Loads another custom sub menu
+#item option_four ${space} This is option four
+choose custom_choice || goto custom_exit
+echo ${cls}
+goto ${custom_choice}
+goto custom_exit
+
+:option_nine
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://iso.pop-os.org/24.04/amd64/intel/17/pop-os_24.04_amd64_intel_17.iso
+boot || goto custom_exit
+
+:option_ten
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://mirrors.xcp-ng.org/isos/8.2/xcp-ng-8.2.1-20231130-netinstall.iso
+boot || goto custom_exit
+
+:option_eleven
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://dl.rockylinux.org/pub/rocky/10/live/x86_64/Rocky-10-Workstation-Lite-x86_64-latest.iso
+boot || goto custom_exit
+
+:option_four
+echo Chains into another menu...
+chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom1.ipxe || goto custom
+
+
 :custom_exit
 chain utils.ipxe
 exit
 
+:option_six Tumbleweed ISO
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd http://download.opensuse.org/tumbleweed/appliances/iso/openSUSE-MicroOS.x86_64-SelfInstall.iso
+boot || goto custom_exit
+
+
+:option_seven Tumbleweed XFCE
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
+boot || goto custom_exit
 
 :start
 echo Hello world!

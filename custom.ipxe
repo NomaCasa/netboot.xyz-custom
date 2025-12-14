@@ -24,10 +24,10 @@ echo ${cls}
 goto ${custom_choice}
 goto custom_exit
 
+
 :option_one
-initrd https://archlinux.org/static/netboot/ipxe-arch.pxe
-kernel https://archlinux.org/static/netboot/ipxe-arch.lkrn
-imgargs vmlinuz quiet splash nomodeset
+kernel http://download.opensuse.org/factory/repo/oss/boot/i386/loader/linux splash=silent install=http://download.opensuse.org/factory/repo/oss/
+initrd http://download.opensuse.org/factory/repo/oss/boot/i386/loader/initrd
 boot || goto custom_exit
 
 :option_two

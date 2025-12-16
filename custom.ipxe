@@ -26,6 +26,7 @@ goto custom_exit
 
 
 :option_one
+imgfree
 kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux BOOTIF=${netX/mac} ip=dhcp splash=silent install=http://download.opensuse.org/factory/repo/oss/
 initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/initrd
 boot || goto custom_exit

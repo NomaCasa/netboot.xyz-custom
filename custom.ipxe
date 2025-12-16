@@ -16,8 +16,8 @@ item --gap Custom urls
 item option_five Custom
 item option_six MicroOS ISO
 item option_seven XFCE Tumbleweed
-item option_eight Custom
-item option_nine Tumbleweed i386
+item option_eight Tumbleweed i386
+item option_nine PopOS!
 
 choose custom_choice || goto custom_exit
 echo ${cls}
@@ -62,38 +62,27 @@ echo ${cls}
 goto ${custom_choice}
 goto custom_exit
 
-:option_nine
-kernel https://boot.netboot.xyz/memdisk raw iso
-initrd https://iso.pop-os.org/24.04/amd64/intel/17/pop-os_24.04_amd64_intel_17.iso
-boot || goto custom_exit
-
-:option_ten
-kernel https://boot.netboot.xyz/memdisk raw iso
-initrd https://mirrors.xcp-ng.org/isos/8.2/xcp-ng-8.2.1-20231130-netinstall.iso
-boot || goto custom_exit
-
-:option_eleven
-kernel https://boot.netboot.xyz/memdisk raw iso
-initrd https://dl.rockylinux.org/pub/rocky/10/live/x86_64/Rocky-10-Workstation-Lite-x86_64-latest.iso
-boot || goto custom_exit
-
-:option_zero Tumbleweed i386
-kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux
-initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/initrd
-imgargs linux queit splash
-chain --autofree https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/EFI/BOOT/bootia32.efi
-boot || goto custom_exit
-:option_six Tumbleweed ISO
+:option_six MicroOS ISO
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/openSUSE-MicroOS.x86_64-SelfInstall.iso
 boot || goto custom_exit
-
 
 :option_seven Tumbleweed XFCE
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
 boot || goto custom_exit
 
+:option_eight Tumbleweed i386
+kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux
+initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/initrd
+imgargs linux queit splash
+chain --autofree https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/EFI/BOOT/bootia32.efi
+boot || goto custom_exit
+
+:option_nine
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://iso.pop-os.org/24.04/amd64/intel/17/pop-os_24.04_amd64_intel_17.iso
+boot || goto custom_exit
 
 
 :custom_exit

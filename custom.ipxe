@@ -74,6 +74,7 @@ initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Liv
 boot || goto custom_exit
 
 :option_eight Tumbleweed i386
+imgfree
 kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux
 initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/initrd
 imgargs linux queit splash

@@ -14,10 +14,10 @@ item option_three ${space} Loads another custom sub menu
 item option_four ${space} Alpine?
 item --gap Custom urls
 item option_five Custom
-item option_eight Custom
-item option_zero Tumbleweed i386
 item option_six MicroOS ISO
 item option_seven XFCE Tumbleweed
+item option_eight Custom
+item option_nine Tumbleweed i386
 
 choose custom_choice || goto custom_exit
 echo ${cls}
@@ -26,15 +26,13 @@ goto custom_exit
 
 
 :option_one
-kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux splash=silent install=http://download.opensuse.org/factory/repo/oss/
+kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux BOOTIF=${netX/mac} ip=dhcp splash=silent install=http://download.opensuse.org/factory/repo/oss/
 initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/initrd
 boot || goto custom_exit
 
 :option_two
-initrd /boot/initrd-6.15.6-1-default
-kernel /boot/vmlinuz-6.15.6-1-default 
-initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-NET-x86_64-Current.iso
-imgargs vmlinuz quiet splash nomodeset
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
 boot || goto custom_exit
 
 :option_three
@@ -79,23 +77,12 @@ kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://dl.rockylinux.org/pub/rocky/10/live/x86_64/Rocky-10-Workstation-Lite-x86_64-latest.iso
 boot || goto custom_exit
 
-:option_six
-echo Chains into another menu...
-chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom1.ipxe || goto custom
-
 :option_zero Tumbleweed i386
 kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux
 initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/initrd
 imgargs linux queit splash
 chain --autofree https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/EFI/BOOT/bootia32.efi
 boot || goto custom_exit
-
-
-
-:custom_exit
-chain utils.ipxe
-exit
-
 :option_six Tumbleweed ISO
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/openSUSE-MicroOS.x86_64-SelfInstall.iso
@@ -106,6 +93,14 @@ boot || goto custom_exit
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
 boot || goto custom_exit
+
+
+
+:custom_exit
+chain utils.ipxe
+exit
+
+
 
 :start
 echo Hello world!

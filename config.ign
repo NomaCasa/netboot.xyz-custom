@@ -1,0 +1,109 @@
+{
+  "ignition": {
+    "version": "3.2.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "root",
+        "passwordHash": "$2a$10$yW.Ss47ioDQQ88mVGVnZAO5hfbGYG8VQKXFDAeGkV7zJPDRR7ITnm"
+      },
+      {
+        "name": "chrisgarb",
+        "passwordHash": "$2a$10$SPLtiZ3I49BcaMWE8HPDgOMe2QT5DkqtE9y36b1osndFEEzVYItWK"
+      }
+    ]
+  },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/hostname",
+        "mode": 420,
+        "overwrite": true,
+        "contents": {
+          "source": "data:,garbcloud.com"
+        }
+      },
+      {
+        "path": "/etc/locale.conf",
+        "mode": 420,
+        "overwrite": true,
+        "contents": {
+          "source": "data:text/plain;charset=utf-8;base64,TEFORz1lbl9VUy5VVEYtOAo=",
+          "human_read": "LANG=en_US.UTF-8\n"
+        }
+      },
+      {
+        "path": "/etc/repart.d/10-partition.conf",
+        "mode": 384,
+        "overwrite": true,
+        "contents": {
+          "source": "data:text/plain;charset=utf-8;base64,W1BhcnRpdGlvbl0KVHlwZT1lc3AKTGFiZWw9ZXNwCkZvcm1hdD12ZmF0ClNpemVNaW5CeXRlcz0xTQpTaXplTWF4Qnl0ZXM9NTEyTQo=",
+          "human_read": "[Partition]\nType=esp\nLabel=esp\nFormat=vfat\nSizeMinBytes=1M\nSizeMaxBytes=512M\n"
+        }
+      },
+      {
+        "path": "/etc/repart.d/11-swap.conf",
+        "mode": 384,
+        "overwrite": true,
+        "contents": {
+          "source": "data:text/plain;charset=utf-8;base64,W1BhcnRpdGlvbl0KVHlwZT1zd2FwClNpemVNaW5CeXRlcz0yTQpTaXplTWF4Qnl0ZXM9MjA0OE0K",
+          "human_read": "[Partition]\nType=swap\nSizeMinBytes=2M\nSizeMaxBytes=2048M\n"
+        }
+      },
+      {
+        "path": "/etc/repart.d/12-partition.conf",
+        "mode": 384,
+        "overwrite": true,
+        "contents": {
+          "source": "data:text/plain;charset=utf-8;base64,W1BhcnRpdGlvbl0KVHlwZT1saW51eC1nZW5lcmljCkxhYmVsPXJvb3RmcwpGb3JtYXQ9YnRyZnMKU2l6ZU1pbkJ5dGVzPTQwOTZNClNpemVNYXhCeXRlcz0xMDI0ME0K",
+          "human_read": "[Partition]\nType=linux-generic\nLabel=rootfs\nFormat=btrfs\nSizeMinBytes=4096M\nSizeMaxBytes=10240M\n"
+        }
+      },
+      {
+        "path": "/etc/repart.d/13-partition.conf",
+        "mode": 384,
+        "overwrite": true,
+        "contents": {
+          "source": "data:text/plain;charset=utf-8;base64,W1BhcnRpdGlvbl0KVHlwZT10bXAKTGFiZWw9dG1wZnMKRm9ybWF0PWV4dDQKU2l6ZU1pbkJ5dGVzPTUxMk0KU2l6ZU1heEJ5dGVzPTIwNDhNCg==",
+          "human_read": "[Partition]\nType=tmp\nLabel=tmpfs\nFormat=ext4\nSizeMinBytes=512M\nSizeMaxBytes=2048M\n"
+        }
+      },
+      {
+        "path": "/etc/repart.d/14-root.conf",
+        "mode": 384,
+        "overwrite": true,
+        "contents": {
+          "source": "data:text/plain;charset=utf-8;base64,W1BhcnRpdGlvbl0KVHlwZT1yb290Cg==",
+          "human_read": "[Partition]\nType=root\n"
+        }
+      },
+      {
+        "path": "/etc/NetworkManager/conf.d/noauto.conf",
+        "mode": 420,
+        "overwrite": true,
+        "contents": {
+          "source": "data:text/plain;charset=utf-8;base64,W21haW5dCiMgRG8gbm90IGRvIGF1dG9tYXRpYyAoREhDUC9TTEFBQykgY29uZmlndXJhdGlvbiBvbiBldGhlcm5ldCBkZXZpY2VzCiMgd2l0aCBubyBvdGhlciBtYXRjaGluZyBjb25uZWN0aW9ucy4Kbm8tYXV0by1kZWZhdWx0PSoK",
+          "human_read": "[main]\n# Do not do automatic (DHCP/SLAAC) configuration on ethernet devices\n# with no other matching connections.\nno-auto-default=*\n"
+        }
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "name": "podman.socket",
+        "enabled": true
+      },
+      {
+        "name": "openssh.service",
+        "enabled": true
+      },
+      {
+        "name": "NetworkManager.service",
+        "enabled": true
+      }
+    ]
+  }
+}
+

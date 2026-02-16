@@ -81,7 +81,7 @@ imgargs linux queit splash
 chain --autofree https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/EFI/BOOT/bootia32.efi
 boot || goto custom_exit
 
-:option_nine
+:option_nine PoP-OS!
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://iso.pop-os.org/24.04/amd64/intel/17/pop-os_24.04_amd64_intel_17.iso
 boot || goto custom_exit

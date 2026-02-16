@@ -18,15 +18,19 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_one Slowroll
-kernel http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/linux
+imgfree
+kernel http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/linux BOOTIF=${netX/mac} ip=dhcp
 initrd http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/initrd
 imgargs quiet splash nouveau.modeset=1
+linux
+initrd
 boot || goto custom_exit
 
 :option_two Agama
-kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
+kernel http://download.opensuse.org/tumbleweed/repo/oss/ raw iso BOOTIF=${netX/mac} ip=dhcp 
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
 boot || goto custom_exit
+
 
 :option_three
 echo Chains into another menu...

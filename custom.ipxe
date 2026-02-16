@@ -7,8 +7,8 @@
 clear custom_choice
 menu This is a Test Menu
 item --gap This is the first sub menu
-item option_slowroll ${space} Loading a kernel and initrd
-item option_agama-iso ${space} Loading an ISO
+item option_one Slowroll ${space} Loading a kernel and initrd
+item option_two Agama ${space} Loading an ISO
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
 item option_four ${space} This is option four
@@ -17,20 +17,20 @@ echo ${cls}
 goto ${custom_choice}
 goto custom_exit
 
-:option_slowroll
+:option_one Slowroll
 kernel http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/linux
 initrd http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/initrd
 imgargs quiet splash nouveau.modeset=1
 boot || goto custom_exit
 
-:option_agama-iso
+:option_two Agama
 kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
 boot || goto custom_exit
 
 :option_three
 echo Chains into another menu...
-chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom1.ipxe || goto custom
+chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom-old.ipxe || goto custom
 
 :custom_exit
 chain utils.ipxe

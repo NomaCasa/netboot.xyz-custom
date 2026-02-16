@@ -69,7 +69,7 @@ initrd http://download.opensuse.org/tumbleweed/appliances/iso/openSUSE-MicroOS.x
 boot || goto custom_exit
 
 :option_seven Tumbleweed XFCE
-kernel https://boot.netboot.xyz/memdisk raw iso
+kernel  rhttp://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
 initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
 boot || goto custom_exit
 

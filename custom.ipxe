@@ -39,9 +39,7 @@ chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master
 
 option_four Talos Pxe
 echo Talos pxe chainloader...
-autofree
 chain https://pxe.factory.talos.dev/pxe/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21/v1.12.4/metal-amd64 || goto custom
-imgargs factory.talos.dev/metal-installer/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21:v1.12.4
 boot || goto custom_exit
 
 option_five Talos ISO

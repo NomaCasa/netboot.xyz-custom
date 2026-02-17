@@ -20,7 +20,7 @@ goto custom_exit
 
 :option_one Slowroll
 imgfree
-kernel http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/linux BOOTIF=${netX/mac} ip=dhcp
+kernel http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/linux
 initrd http://download.opensuse.org/slowroll/repo/oss/boot/x86_64/loader/initrd
 imgargs quiet splash nouveau.modeset=1
 linux
@@ -28,7 +28,7 @@ initrd
 boot || goto custom_exit
 
 :option_two Agama
-kernel http://download.opensuse.org/tumbleweed/repo/oss/ raw iso BOOTIF=${netX/mac} ip=dhcp 
+kernel http://download.opensuse.org/tumbleweed/repo/oss/ raw iso
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
 boot || goto custom_exit
 
@@ -43,7 +43,6 @@ chain https://pxe.factory.talos.dev/pxe/81885e28c7c5382682db35b319a24742955f472c
 boot || goto custom_exit
 
 option_five Talos ISO
-kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://factory.talos.dev/image/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21/v1.12.4/metal-amd64.iso
 boot || goto custom_exit
 

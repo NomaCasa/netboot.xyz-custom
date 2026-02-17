@@ -7,11 +7,12 @@
 clear custom_choice
 menu This is a Test Menu
 item --gap This is the first sub menu
-item option_one Slowroll ${space} Loading a kernel and initrd
-item option_two Agama ${space} Loading an ISO
+item option_one ${space} Slowroll - Loading a kernel and initrd
+item option_two ${space} Agama - Loading an ISO
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
-item option_four ${space} This is option four
+item option_four ${space} Talos pxe
+item option_five ${space} Talos ISO
 choose custom_choice || goto custom_exit
 echo ${cls}
 goto ${custom_choice}
@@ -35,6 +36,18 @@ boot || goto custom_exit
 :option_three
 echo Chains into another menu...
 chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom-old.ipxe || goto custom
+
+option_four Talos Pxe
+echo Talos pxe chainloader...
+autofree
+chain https://pxe.factory.talos.dev/pxe/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21/v1.12.4/metal-amd64 || goto custom
+imgargs factory.talos.dev/metal-installer/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21:v1.12.4
+boot || goto custom_exit
+
+option_five Talos ISO
+kernel https://pxe.factory.talos.dev/pxe/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21/v1.12.4/metal-amd64
+initrd https://factory.talos.dev/image/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21/v1.12.4/metal-amd64.iso
+boot || goto custom_exit
 
 :custom_exit
 chain utils.ipxe

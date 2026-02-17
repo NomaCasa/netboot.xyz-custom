@@ -32,7 +32,7 @@ initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/lo
 boot || goto custom_exit
 
 :option_two
-kernel https://boot.netboot.xyz/memdisk raw iso
+kernel https://boot.netboot.xyz/memdisk iso
 initrd https://enterprise.proxmox.com/iso/proxmox-ve_9.1-1.iso
 boot || goto custom_exit
 
@@ -64,12 +64,12 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_six MicroOS ISO
-kernel https://boot.netboot.xyz/memdisk raw iso
+kernel https://boot.netboot.xyz/memdisk iso
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/openSUSE-MicroOS.x86_64-SelfInstall.iso
 boot || goto custom_exit
 
 :option_seven Tumbleweed XFCE
-kernel  rhttp://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
+kernel  rhttp://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux iso
 initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
 boot || goto custom_exit
 
@@ -82,7 +82,7 @@ chain --autofree https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/EF
 boot || goto custom_exit
 
 :option_nine PoP-OS!
-kernel https://boot.netboot.xyz/memdisk raw iso
+kernel https://boot.netboot.xyz/memdisk iso
 initrd https://iso.pop-os.org/24.04/amd64/intel/17/pop-os_24.04_amd64_intel_17.iso
 boot || goto custom_exit
 

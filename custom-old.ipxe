@@ -33,7 +33,7 @@ boot || goto custom_exit
 
 :option_two
 kernel https://boot.netboot.xyz/memdisk raw iso
-initrd https://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
+initrd https://factory.talos.dev/image/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21/v1.12.4/metal-amd64.iso
 boot || goto custom_exit
 
 :option_three

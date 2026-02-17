@@ -43,6 +43,7 @@ chain https://pxe.factory.talos.dev/pxe/81885e28c7c5382682db35b319a24742955f472c
 boot || goto custom_exit
 
 option_five Talos ISO
+kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://factory.talos.dev/image/81885e28c7c5382682db35b319a24742955f472c32e298772ce8d109ab8d2f21/v1.12.4/metal-amd64.iso
 boot || goto custom_exit
 

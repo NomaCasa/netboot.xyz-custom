@@ -7,8 +7,8 @@
 clear custom_choice
 menu This is a Test Menu
 item --gap This is the first sub menu
-item option_one ${space} Loading a kernel and initrd
-item option_two ${space} Loading an ISO
+item option_one ${space} Loading a kernel and initrd - agama?
+item option_two ${space} Loading an ISO -proxmox
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
 item option_four ${space} Alpine?
@@ -18,6 +18,7 @@ item option_six MicroOS ISO
 item option_seven XFCE Tumbleweed
 item option_eight Tumbleweed i386
 item option_nine PopOS!
+item option_ten Tumbleweed
 
 choose custom_choice || goto custom_exit
 echo ${cls}
@@ -25,13 +26,13 @@ goto ${custom_choice}
 goto custom_exit
 
 
-:option_one
+:option_one i586
 imgfree
-kernel https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/linux BOOTIF=${netX/mac} ip=dhcp splash=silent install=http://download.opensuse.org/factory/repo/oss/
-initrd https://download.opensuse.org/ports/i586/tumbleweed/repo/oss/boot/i386/loader/initrd
+kernel https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux BOOTIF=${netX/mac} ip=dhcp splash=silent install=http://download.opensuse.org/tumbleweed/repo/oss/
+initrd https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
 boot || goto custom_exit
 
-:option_two
+:option_two Proxmox
 kernel https://boot.netboot.xyz/memdisk iso
 initrd https://enterprise.proxmox.com/iso/proxmox-ve_9.1-1.iso
 boot || goto custom_exit

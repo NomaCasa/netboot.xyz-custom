@@ -54,7 +54,7 @@ menu Custom URLs
 item --gap This is the first sub menu
 item option_one ${space} Install PopOS Cosmic (Intel) 24.04
 item option_two ${space} Install XCP-NG 8.2.1
-item option_three ${space} Install Rocky-10-Workstation-Lite
+
 item --gap This is a second sub menu
 item option_four ${space} Loads another custom sub menu
 #item option_four ${space} This is option four
@@ -64,12 +64,12 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_six MicroOS ISO
-kernel https://boot.netboot.xyz/memdisk iso
+download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/openSUSE-MicroOS.x86_64-SelfInstall.iso
 boot || goto custom_exit
 
 :option_seven Tumbleweed XFCE
-kernel  rhttp://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux iso
+kernel  https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
 initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
 boot || goto custom_exit
 
@@ -86,6 +86,13 @@ kernel https://boot.netboot.xyz/memdisk iso
 initrd https://iso.pop-os.org/24.04/amd64/intel/17/pop-os_24.04_amd64_intel_17.iso
 boot || goto custom_exit
 
+:option_ten Tumbleweed x86
+imgfree
+kernel https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux
+initrd https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
+imgargs linux queit splash
+chain --autofree https://download.opensuse.org/tumbleweed/repo/oss/EFI/BOOT/bootx64.efi
+boot || goto custom_exit
 
 :custom_exit
 chain utils.ipxe

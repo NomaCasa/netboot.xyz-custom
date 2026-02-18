@@ -1,5 +1,39 @@
 #!ipxe
 ###
-### netboot.xyz-custom menu
+### {{ site_name }} custom menu example
 ###
 
+:custom
+clear custom_choice
+menu This is a Test Menu
+item --gap This is the first sub menu
+item option_one ${space} Agama - Loading a kernel and initrd
+item option_two ${space} Agama - Loading an ISO
+item --gap This is a second sub menu
+item option_three ${space} Loads another custom sub menu
+item option_four ${space} PVE Menu
+choose custom_choice || goto custom_exit
+echo ${cls}
+goto ${custom_choice}
+goto custom_exit
+
+:option_one
+kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linix
+initrd http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
+boot || goto custom_exit
+
+:option_two
+kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/isolinux.cfg iso
+initrd http://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
+boot || goto custom_exit
+
+:option_three
+echo Chains into another menu...
+chain custom-old.ipxe || goto custom
+
+:option_four PVE ISO
+echo Chain PVE ipxe menu...
+chain proxmox.ipxe || goto custom
+
+:custom_exit
+exit

@@ -18,14 +18,16 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_one
-kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linix
+imgfree
+kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linix 
 initrd http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
-boot || goto custom_exit
+kernel initrd
+boot
 
 :option_two
-kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/isolinux.cfg iso
+kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/isolinux.cfg raw iso
 initrd http://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
-boot || goto custom_exit
+boot
 
 :option_three
 echo Chains into another menu...

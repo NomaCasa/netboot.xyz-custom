@@ -39,4 +39,4 @@ chain https://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxm
 
 :custom_exit
 chain utils.ipxe
-exit
+exit 

@@ -25,17 +25,18 @@ boot || goto custom_exit
 
 :option_two
 kernel https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
-initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Snapshot20260218-Media.iso
+initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
 boot || goto custom_exit
 
 :option_three
 echo Chains into another menu...
 chain https://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
+boot || goto custom_exit
 
 :option_four
 echo Proxmox IsO menu...
 chain https://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
-
+boot || goto custom_exit
 
 :custom_exit
 chain utils.ipxe

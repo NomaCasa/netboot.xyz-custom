@@ -18,24 +18,24 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_one
-kernel https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux
-initrd https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
+kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux
+initrd http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
 imgargs linux
 boot || goto custom_exit
 
 :option_two
-kernel https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
-initrd https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
+kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
+initrd http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
 boot || goto custom_exit
 
 :option_three
 echo Chains into another menu...
-chain https://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
+chain http://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
 boot || goto custom_exit
 
 :option_four
 echo Proxmox IsO menu...
-chain https://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
+chain http://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
 boot || goto custom_exit
 
 :custom_exit

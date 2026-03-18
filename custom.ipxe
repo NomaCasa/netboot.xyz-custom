@@ -10,7 +10,7 @@ item --gap This is the first sub menu
 item option_one ${space} Loading a kernel and initrd
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
-item option_three ${space} Loads another custom sub menu
+item option_three ${space} Talos
 item option_four ${space} This is option four
 choose custom_choice || goto custom_exit
 echo ${cls}
@@ -30,12 +30,12 @@ boot || goto custom_exit
 
 :option_three
 echo Chains into another menu...
-chain http://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
+chain  https://pxe.factory.talos.dev/pxe/fa247c6a6585be6da9ce93b96f114870292e87df8cd974fcbc15a18ea6767b51/v1.12.5/openstack-amd64 || goto custom
 boot || goto custom_exit
 
 :option_four
-echo Proxmox IsO menu...
-chain http://raw.githubusercontent.com/NomaCasa/netboot.xyz-custom/master/proxmox.ipxe || goto custom
+echo Talos menu...
+chain https://pxe.factory.talos.dev/pxe/fa247c6a6585be6da9ce93b96f114870292e87df8cd974fcbc15a18ea6767b51/v1.12.5/openstack-amd64 || goto custom
 boot || goto custom_exit
 
 :custom_exit

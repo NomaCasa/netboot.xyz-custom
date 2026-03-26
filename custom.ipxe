@@ -34,10 +34,9 @@ chain  https://pxe.factory.talos.dev/pxe/fa247c6a6585be6da9ce93b96f114870292e87d
 boot || goto custom_exit
 
 :option_four
-echo Talos menu...
-chain https://pxe.factory.talos.dev/pxe/fa247c6a6585be6da9ce93b96f114870292e87df8cd974fcbc15a18ea6767b51/v1.12.5/openstack-amd64 || goto custom
+echo OpenSUSE...
+chain http://www.zq1.de/ipxe/boot.ipxe
 boot || goto custom_exit
-
 :custom_exit
 chain utils.ipxe
 exit 

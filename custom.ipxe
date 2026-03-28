@@ -37,6 +37,7 @@ boot || goto custom_exit
 echo OpenSUSE...
 chain http://www.zq1.de/ipxe/boot.ipxe
 boot || goto custom_exit
-:custom_exit
+
+:option_five
 chain utils.ipxe
 exit 

@@ -7,7 +7,7 @@
 clear custom_choice
 menu This is a Test Menu
 item --gap This is the first sub menu
-item option_one ${space} Loading a kernel and initrd
+item option_one ${space} Agama iPxe - Loading a kernel and initrd
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
 item option_three ${space} Talos
@@ -20,7 +20,8 @@ goto custom_exit
 :option_one
 kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux
 initrd http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
-imgargs linux
+install http://download.opensuse.org/distribution/openSUSE-current/installer/agama-installer.x86_64-Leap_16.0_PXE.install.tar
+imgargs linux initrd
 boot || goto custom_exit
 
 :option_two

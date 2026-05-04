@@ -7,26 +7,31 @@
 clear custom_choice
 menu This is a Test Menu
 item --gap This is the first sub menu
-item option_one ${space} Agama iPxe - Loading a kernel and initrd
-item option_two ${space} Loading an ISO
+item option_one ${space} Tumbleweed Agama iPxe - Loads kernel and initrd
+item option_two ${space} Loads from ISO
 item --gap This is a second sub menu
-item option_three ${space} Talos
-item option_four ${space} This is option four
+item option_three ${space} Talos - Old
+item option_four ${space} Four - OpenSUSE iPxe
+item option_five ${space} Utils
+item option_six ${space} Talos - new, with initrd and kernel assets, for Proxmox
+item option_seven ${space} Talos - new, iPxe boot
 choose custom_choice || goto custom_exit
 echo ${cls}
 goto ${custom_choice}
 goto custom_exit
 
 :option_one
+echo Agama loader...
 kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux
 initrd http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd
-install http://download.opensuse.org/distribution/openSUSE-current/installer/agama-installer.x86_64-Leap_16.0_PXE.install.tar
+install 
 imgargs linux initrd
 boot || goto custom_exit
 
 :option_two
+echo Tumbleweed ISO
 kernel http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux raw iso
-initrd http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso
+initrd http://download.opensuse.org/tumbleweed/appliances/iso/agama-installer.x86_64-openSUSE.iso
 boot || goto custom_exit
 
 :option_three
@@ -40,5 +45,19 @@ chain http://www.zq1.de/ipxe/boot.ipxe
 boot || goto custom_exit
 
 :option_five
+echo Utils
 chain utils.ipxe
+
+:option_six
+echo Talos - with initrd and kernel
+kernel https://factory.talos.dev/image/bc855f591f22139732f6a12560c21577e6c92aab2f9d93ea22b75de6f910d090/v1.13.0/kernel-amd64
+initrd https://factory.talos.dev/image/bc855f591f22139732f6a12560c21577e6c92aab2f9d93ea22b75de6f910d090/v1.13.0/initramfs-amd64.xz
+chain https://factory.talos.dev/image/bc855f591f22139732f6a12560c21577e6c92aab2f9d93ea22b75de6f910d090/v1.13.0/metal-amd64-uki.efi || goto custom
+boot || goto custom_exit
+
+:option_seven
+echo Chains into another menu...
+chain https://pxe.factory.talos.dev/pxe/bc855f591f22139732f6a12560c21577e6c92aab2f9d93ea22b75de6f910d090/v1.13.0/metal-amd64 || goto custom
+boot || goto custom_exit
+
 exit 
